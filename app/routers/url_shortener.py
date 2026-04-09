@@ -9,11 +9,11 @@ router = APIRouter(
     prefix = "/url"
 )
 
-
-
-
 @router.post("/")
 def url_shortener(url : schemas.urlFormat, db: Session = Depends(database.get_db), short_link = utils.generate_short_code()):
+    query = db.query(models.urlsConverted).filter(models.urlsConverted.long_URL == url.long_URL).first()
+    if query:
+        return query
     new_link = models.urlsConverted(short_URL = short_link, **url.model_dump())
     db.add(new_link)
     db.commit()
