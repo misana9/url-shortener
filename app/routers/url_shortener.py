@@ -3,14 +3,15 @@ from app import schemas
 from .. import database
 from sqlalchemy.orm import Session
 from app import utils,models
-
+from ..oauth2 import get_current_user
 
 router = APIRouter(
     prefix = "/url"
 )
 
 @router.post("/")
-def url_shortener(url : schemas.urlFormat, db: Session = Depends(database.get_db), short_link = utils.generate_short_code()):
+def url_shortener(url : schemas.urlFormat, db: Session = Depends(database.get_db), access_token:str = Depends(get_current_user)):
+    short_link = utils.generate_short_code() 
     query = db.query(models.urlsConverted).filter(models.urlsConverted.long_URL == url.long_URL).first()
     if query:
         return query.long_URL
