@@ -33,13 +33,14 @@ def verify_access_token(token: str,credential_exception):
         payload = jwt.decode(token,SECRET_KEY,algorithms=[ALGORITHM])
 
         id : Optional[str] = payload.get("user_id")
-        print(payload)
         if id is None:
             print("hello")
 
         token_data = schemas.tokenData(id=id)# type: ignore
     except InvalidTokenError:           
         raise credential_exception
+    
+    return token_data
 
     
 def get_current_user(token:str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
