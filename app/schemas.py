@@ -1,8 +1,8 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, HttpUrl
 from typing import Optional
 
 class urlFormat(BaseModel):
-    long_URL : str
+    long_URL : HttpUrl
 
 class user(BaseModel):
     email : str
