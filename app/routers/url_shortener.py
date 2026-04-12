@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 from app import utils,models
 from ..oauth2 import get_current_user
 from typing import List
+from ..config import settings
 
 router = APIRouter(
     prefix = "/url"
@@ -14,13 +15,15 @@ router = APIRouter(
 def url_shortener(url : schemas.urlFormat, db: Session = Depends(database.get_db), current_user:str = Depends(get_current_user)):
     short_link = utils.generate_short_code()
     query = db.query(models.urlsConverted).filter(models.urlsConverted.long_URL == str(url.long_URL) ).first()
-    if query:
-        return query.long_URL
-    new_link = models.urlsConverted(short_URL = short_link, **url.model_dump(mode="json"), owner_id = current_user.id) #type: ignore
-    db.add(new_link)
-    db.commit()
-    db.refresh(new_link)
-    return {"message": "done"}
+    if not query:
+        new_link = models.urlsConverted(short_URL = short_link, **url.model_dump(mode="json"), owner_id = current_user.id) #type: ignore
+        db.add(new_link)
+        db.commit()
+        db.refresh(new_link)
+        url = f"{settings.base_url}/{short_link}" #type:ignore
+    else:
+        url = f"{settings.base_url}/{query.short_URL}" #type:ignore
+    return url
 
 
 @router.delete("/{id}")
