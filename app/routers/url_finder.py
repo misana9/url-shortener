@@ -13,4 +13,4 @@ def url_finder(short_link: str, db : Session = Depends(get_db)):
     query = db.query(models.urlsConverted).filter(models.urlsConverted.short_URL == short_link).first()
     if not query:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="URL not found")
-    return query.long_URL  # type: ignore
+    return RedirectResponse(url=query.long_URL)  # type: ignore
