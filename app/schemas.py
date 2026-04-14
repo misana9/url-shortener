@@ -17,6 +17,7 @@ class tokenData(BaseModel):
     id : Optional[int] = None
 
 class urlOut(BaseModel):
+    id: int
     long_URL : str
     short_URL: str
     created_at : datetime
