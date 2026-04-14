@@ -24,9 +24,6 @@ app.include_router(url_shortener.router)
 app.include_router(url_finder.router)
 app.include_router(auth.router)
 
-app.mount("/", StaticFiles(directory="frontend"), name="static")
-
-
 @app.get("/")
 def index():
     return HTMLResponse(open("frontend/index.html").read())
@@ -35,3 +32,5 @@ def index():
 @app.get("/")
 async def root():
     return {"message" : "hello World"}
+
+app.mount("/", StaticFiles(directory="frontend"), name="static")
