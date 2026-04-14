@@ -24,7 +24,7 @@ app.include_router(url_shortener.router)
 app.include_router(url_finder.router)
 app.include_router(auth.router)
 
-app.mount("/frontend", StaticFiles(directory="frontend"), name="static")
+app.mount("/", StaticFiles(directory="frontend"), name="static")
 
 
 @app.get("/")
