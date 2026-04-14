@@ -3,12 +3,14 @@ from .routers import url_shortener,url_finder,users,auth
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
+from .config import settings
 
 
 app = FastAPI()
 
 origins = [
-    "http://127.0.0.1:5500"
+    "http://127.0.0.1:5500",
+    settings.base_url
 ]
 
 app.add_middleware(
