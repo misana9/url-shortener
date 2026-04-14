@@ -1,6 +1,8 @@
+const BASE_URL = window.location.origin;
+
 export async function root() {
     try{
-        const res = await fetch("http://127.0.0.1:8000",{
+        const res = await fetch(`${BASE_URL}/`,{
             method : "GET",
         })
         const data = await res.json()
@@ -11,7 +13,7 @@ export async function root() {
 }
 
 export async function login(email,password){
-        const res = await fetch("http://127.0.0.1:8000/login",{
+        const res = await fetch(`${BASE_URL}/login`,{
             method : "POST",
             headers : {
                 "Content-Type" : "application/x-www-form-urlencoded"
@@ -33,7 +35,7 @@ export async function login(email,password){
 
 
 export async function convert(url,token){
-    const res = await fetch("http://127.0.0.1:8000/url/",{
+    const res = await fetch(`${BASE_URL}/url`,{
         method: "POST",
         headers: {
             "Content-Type" : "application/json",
@@ -59,7 +61,7 @@ export async function convert(url,token){
 }
 
 export async function getUrl(token){
-    const res = await fetch ("http://127.0.0.1:8000/url/user-links",{
+    const res = await fetch (`${BASE_URL}/url/user-links`,{
         method: "GET",
         headers:{
             Authorization: `Bearer ${token}`
@@ -75,7 +77,7 @@ export async function getUrl(token){
 }
 
 export async function deleteUrl(id,token){
-    const res = await fetch (`http://127.0.0.1:8000/url/${id}`,{
+    const res = await fetch (`${BASE_URL}/url/${id}`,{
         method : "DELETE",
         headers :{
             Authorization : `Bearer ${token}`
