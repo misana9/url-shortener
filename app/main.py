@@ -14,7 +14,7 @@ origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "url-shortener-production-3c68.up.railway.app"
-    "https://motivated-nourishment-production-5074.up.railway.app/"
+    "https://https://gentle-education-production-3cdd.up.railway.app"
 ]
 
 app.add_middleware(
