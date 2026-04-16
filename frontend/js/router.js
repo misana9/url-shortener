@@ -5,6 +5,8 @@ import { isLoggedIn } from "./helper.js"
 import { logoutUser } from "./helper.js"
 import { API_URL } from "./api.js"
 
+console.log(API_URL)
+
 const userBtn = document.getElementById("userBtn")
 const convertBtn = document.getElementById("convertBtn")
 const logoutBtn = document.getElementById("logoutBtn")
