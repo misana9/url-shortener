@@ -1,8 +1,8 @@
-const BASE_URL = window.location.origin;
+const API_URL = import.meta.env.VITE_API_URL || '';
 
 export async function root() {
     try{
-        const res = await fetch(`${BASE_URL}/`,{
+        const res = await fetch(`${API_URL}/`,{
             method : "GET",
         })
         const data = await res.json()
@@ -13,7 +13,7 @@ export async function root() {
 }
 
 export async function login(email,password){
-        const res = await fetch(`${BASE_URL}/login`,{
+        const res = await fetch(`${API_URL}/login`,{
             method : "POST",
             headers : {
                 "Content-Type" : "application/x-www-form-urlencoded"
@@ -35,7 +35,7 @@ export async function login(email,password){
 
 
 export async function convert(url,token){
-    const res = await fetch(`${BASE_URL}/url`,{
+    const res = await fetch(`${API_URL}/url/`,{
         method: "POST",
         headers: {
             "Content-Type" : "application/json",
@@ -61,7 +61,7 @@ export async function convert(url,token){
 }
 
 export async function getUrl(token){
-    const res = await fetch (`${BASE_URL}/url/user-links`,{
+    const res = await fetch (`${API_URL}/url/user-links`,{
         method: "GET",
         headers:{
             Authorization: `Bearer ${token}`
@@ -77,7 +77,7 @@ export async function getUrl(token){
 }
 
 export async function deleteUrl(id,token){
-    const res = await fetch (`${BASE_URL}/url/${id}`,{
+    const res = await fetch (`${API_URL}/url/${id}`,{
         method : "DELETE",
         headers :{
             Authorization : `Bearer ${token}`
