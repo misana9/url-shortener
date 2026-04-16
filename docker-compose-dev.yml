@@ -21,5 +21,16 @@ services:
     volumes:
       - postgres-db:/var/lib/postgresql
 
+      # add your DB/env vars here
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: "http://127.0.0.1:8000"
+    ports:
+      - "3000:80"
+
 volumes:
   postgres-db:
