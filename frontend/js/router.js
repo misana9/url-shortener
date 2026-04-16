@@ -3,6 +3,7 @@ import { initApp } from "./views/app.js"
 import { initUser } from "./views/user.js"
 import { isLoggedIn } from "./helper.js"
 import { logoutUser } from "./helper.js"
+import { API_URL } from "./api.js"
 
 const userBtn = document.getElementById("userBtn")
 const convertBtn = document.getElementById("convertBtn")
