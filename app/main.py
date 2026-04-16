@@ -10,7 +10,8 @@ app = FastAPI()
 
 origins = [
     "http://127.0.0.1:5500",
-    settings.base_url
+    "http://localhost:5173",
+    "url-shortener-production-3c68.up.railway.app"
 ]
 
 app.add_middleware(
@@ -27,12 +28,5 @@ app.include_router(url_finder.router)
 app.include_router(auth.router)
 
 @app.get("/")
-def index():
-    return HTMLResponse(open("frontend/index.html").read())
-
-
-@app.get("/")
 async def root():
     return {"message" : "hello World"}
-
-app.mount("/", StaticFiles(directory="frontend"), name="static")

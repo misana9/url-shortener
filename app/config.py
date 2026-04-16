@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     database_username:str
     secret_key: str
     algorithm: str
+    vite_base_url: str
     base_url: str
     access_token_expire_minutes:int
 
