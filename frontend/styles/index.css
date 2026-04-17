@@ -96,7 +96,32 @@ main {
   gap: 0.875rem;
 }
 
+
+#registerDiv {
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
 #loginDiv input {
+  width: 100%;
+  height: 40px;
+  padding: 0 0.875rem;
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--color-text-primary);
+  background: var(--color-bg);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+#registerDiv input {
   width: 100%;
   height: 40px;
   padding: 0 0.875rem;
@@ -120,9 +145,19 @@ main {
   background: var(--color-surface);
 }
 
+#registerDiv input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+#registerDiv input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+  background: var(--color-surface);
+}
+
 /* ── URL shortener form ─────────────────────── */
 
-#loginDiv + div {
+#registerDiv + div {
   background: var(--color-surface);
   border: 0.5px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -226,10 +261,15 @@ footer {
     flex-direction: column;
   }
 
+  #registerDiv + div {
+    flex-direction: column;
+  }
+
   #submit-url {
     width: 100%;
   }
 }
+
 
 
 .url-card {
