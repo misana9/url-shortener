@@ -34,8 +34,7 @@ def verify_access_token(token: str,credential_exception):
 
         id : Optional[str] = payload.get("user_id")
         if id is None:
-            print("hello")
-
+            raise credential_exception
         token_data = schemas.tokenData(id=id)# type: ignore
     except InvalidTokenError:           
         raise credential_exception
