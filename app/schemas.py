@@ -1,6 +1,7 @@
-from pydantic import BaseModel, HttpUrl
+from pydantic import BaseModel, HttpUrl, computed_field
 from typing import Optional
 from datetime import datetime
+from .config import settings
 
 class urlFormat(BaseModel):
     long_URL : HttpUrl
@@ -21,6 +22,11 @@ class urlOut(BaseModel):
     long_URL : str
     short_URL: str
     created_at : datetime
+
+    @computed_field
+    @property
+    def formatted_short_url(self) -> str:
+        return f"{settings.base_url}/{self.short_URL}"
 
     class Config:
         from_attributes = True

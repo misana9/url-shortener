@@ -34,7 +34,7 @@ function renderUrls(data) {
         card.className = "url-card"
 
         const shortLink = document.createElement("a")
-        shortLink.href = `${API_URL}/${item.short_URL}`
+        shortLink.href = item.formatted_short_url
         shortLink.textContent = item.short_URL
         shortLink.target = "_blank"
 
