@@ -1,5 +1,6 @@
 import { getUrl, deleteUrl } from "../api.js"
 import {logoutUser} from "../helper.js"
+import { API_URL } from "../api.js"
 
 
 export function initUser(){
@@ -33,7 +34,7 @@ function renderUrls(data) {
         card.className = "url-card"
 
         const shortLink = document.createElement("a")
-        shortLink.href = `http://127.0.0.1:8000/${item.short_URL}`
+        shortLink.href = `${API_URL}/${item.short_URL}`
         shortLink.textContent = item.short_URL
         shortLink.target = "_blank"
 
